@@ -1,0 +1,16 @@
+diff -up ruby-1.9.3-p0/configure.in~ ruby-1.9.3-p0/configure.in
+--- ruby-1.9.3-p0/configure.in~	2012-03-01 04:01:43.000000000 +0000
++++ ruby-1.9.3-p0/configure.in	2012-03-01 04:01:58.000000000 +0000
+@@ -9,6 +9,12 @@ AC_DEFUN([RUBY_PREREQ_AC],
+ 	[m4_if(m4_version_compare(m4_defn([m4_PACKAGE_VERSION]), [$1]), [-1],
+ 		AC_MSG_ERROR([Autoconf version ]$1[ or higher is required]$2))])
+ 
++dnl Autoconf >= 2.61 has AC_COMPUTE_INT built-in.
++dnl Remove this when we can assume autoconf >= 2.61.
++m4_ifdef([AC_COMPUTE_INT], [], [
++  AC_DEFUN([AC_COMPUTE_INT], [_AC_COMPUTE_INT([$2],[$1],[$3],[$4])])
++])
++
+ dnl environment section {
+ 
+ AC_ARG_WITH(baseruby,

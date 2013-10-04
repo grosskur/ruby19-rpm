@@ -1,0 +1,24 @@
+From 8d5b471c0c51de0c43715e9e36f5ddde6beda2b0 Mon Sep 17 00:00:00 2001
+From: Eric Hodel <drbrain@segment7.net>
+Date: Tue, 20 Nov 2012 20:30:13 -0800
+Subject: [PATCH] Process files in sorted order.  Issue #71
+
+---
+ History.rdoc           | 1 +
+ lib/rdoc/rdoc.rb       | 2 ++
+ test/test_rdoc_rdoc.rb | 6 ++++--
+ 3 files changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/lib/rdoc/rdoc.rb b/lib/rdoc/rdoc.rb
+index 1307127..70c09eb 100644
+--- a/lib/rdoc/rdoc.rb
++++ b/lib/rdoc/rdoc.rb
+@@ -119,6 +119,8 @@ def gather_files files
+     file_list = file_list.uniq
+ 
+     file_list = remove_unparseable file_list
++
++    file_list.sort
+   end
+ 
+   ##
